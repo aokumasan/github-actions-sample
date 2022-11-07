@@ -13,4 +13,4 @@ jobs:
       - name: Get dependencies
         run: make install-tools
       - name: Check
-        run: make lincense-check
+        run: make license-check
