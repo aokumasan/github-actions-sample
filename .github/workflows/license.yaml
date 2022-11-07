@@ -3,7 +3,7 @@ name: License Check
 on: [pull_request]
 
 jobs:
-  lint:
+  license-check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -11,6 +11,6 @@ jobs:
         with:
           go-version: 1.19
       - name: Get dependencies
-        run: make tools
+        run: make install-tools
       - name: Check
         run: make lincense-check
