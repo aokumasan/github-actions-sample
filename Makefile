@@ -33,3 +33,7 @@ install-tools:
 	@for tool in $(TOOLS); do \
 		GOBIN=$(GOBIN) go install $$tool; \
 	done
+
+.PHONY: license-check
+license-check:
+	@$(GOBIN)/go-licenses check --ignore github.com/aokumasan ./...
