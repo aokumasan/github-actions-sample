@@ -1,3 +1,5 @@
+IMAGE_VERSION?=latest
+
 ifndef GOBIN
 GOBIN=$(shell pwd)/bin
 endif
@@ -21,7 +23,7 @@ lint:
 
 .PHONY: image
 image:
-	docker build -t ghcr.io/aokumasan/github-actions-sample:latest .
+	docker build -t ghcr.io/aokumasan/github-actions-sample:$(IMAGE_VERSION) .
 
 .PHONY: push
 push:
