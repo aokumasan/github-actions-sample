@@ -3,7 +3,7 @@ GOBIN=$(shell pwd)/bin
 endif
 
 TOOLS=\
-	github.com/golangci/golangci-lint/cmd/golangci-lint@v1.50.1 \
+	github.com/golangci/golangci-lint/cmd/golangci-lint@v1.49.0 \
 	golang.org/x/tools/cmd/goimports@latest \
 	github.com/google/go-licenses@latest
 
