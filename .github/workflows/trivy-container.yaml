@@ -19,14 +19,14 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Build an image from Dockerfile
-        if: matrix.version != 'latest'
+        if: matrix.tag != 'latest'
         run: |
           make image IMAGE_VERSION=${{ github.sha }}
 
       - name: Run Trivy vulnerability scanner in repo mode
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: 'ghcr.io/aokumasan/github-actions-sample:${{ matrix.version }}'
+          image-ref: 'ghcr.io/aokumasan/github-actions-sample:${{ matrix.tag }}'
           ignore-unfixed: true
           format: 'sarif'
           output: 'results.sarif'
