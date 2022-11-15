@@ -10,7 +10,14 @@ jobs:
       - uses: actions/setup-go@v3
         with:
           go-version-file: .go-version
-      - name: Get dependencies
-        run: make install-tools
-      - name: Check
-        run: make license-check
+      - name: Install go-licenses
+        run: |
+          go install github.com/google/go-licenses@latest
+        env:
+          GOBIN: ${GITHUB_WORKSPACE}/bin
+
+      - name: Check license
+        run: |
+          make license-check
+        env:
+          GOBIN: ${GITHUB_WORKSPACE}/bin
