@@ -12,12 +12,8 @@ jobs:
           go-version-file: .go-version
       - name: Install go-licenses
         run: |
-          go install github.com/google/go-licenses@latest
-        env:
-          GOBIN: ${GITHUB_WORKSPACE}/bin
+          GOBIN=$(pwd)/bin go install github.com/google/go-licenses@latest
 
       - name: Check license
         run: |
           make license-check
-        env:
-          GOBIN: ${GITHUB_WORKSPACE}/bin
