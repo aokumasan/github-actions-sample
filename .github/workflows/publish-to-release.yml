@@ -1,0 +1,38 @@
+name: Publish
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Get release
+        id: get_release
+        uses: bruceadams/get-release@v1.3.2
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: debug
+        run: |
+          echo ${{ steps.get_release.outputs }}
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version-file: .go-version
+
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Build
+        run: |
+          go build -o sample main.go
+
+      - name: Upload Release Asset
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            sample
